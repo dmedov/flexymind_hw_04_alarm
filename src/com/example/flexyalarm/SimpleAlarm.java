@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 
+import java.util.Calendar;
+
 public class SimpleAlarm {
     MediaPlayer mediaPlayer;
     Context context;
@@ -13,6 +15,8 @@ public class SimpleAlarm {
     AlarmManager alarmManager;
     Boolean isSet;
     private static SimpleAlarm instance;
+
+    private final static int SNOOZE_TIME_MIN = 5;
 
     public static SimpleAlarm getInstance() {
         if (instance == null) {
@@ -44,6 +48,13 @@ public class SimpleAlarm {
         if (mediaPlayer != null) {
             mediaPlayer.start();
         }
+    }
+
+    void snooze() {
+        off();
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MINUTE, SNOOZE_TIME_MIN);
+        set(calendar.getTimeInMillis());
     }
 
     void off() {
