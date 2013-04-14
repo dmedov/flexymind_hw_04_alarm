@@ -8,6 +8,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TimePicker;
+import android.widget.ToggleButton;
 
 import java.util.Calendar;
 
@@ -16,12 +17,14 @@ public class SetAlarmActivity extends Activity {
      * Called when the activity is first created.
      */
     TimePicker timePicker;
+    ToggleButton toogleButton;
     SimpleAlarm alarm;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setalarm);
         timePicker = (TimePicker)findViewById(R.id.timePicker);
+        toogleButton = (ToggleButton)findViewById(R.id.toggleButton);
 
         AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
         alarm = SimpleAlarm.getInstance();
@@ -38,9 +41,14 @@ public class SetAlarmActivity extends Activity {
         finish();
     }
 
-    public void setAlarm(View v) {
-        long time = getNextAlarmTime();
-        alarm.set(time);
+    public void toogleBtnHandler(View v) {
+        if (toogleButton.isChecked()) {
+            long time = getNextAlarmTime();
+            alarm.set(time);
+        } else {
+            alarm.off();
+        }
+
     }
 
     public long getNextAlarmTime() {

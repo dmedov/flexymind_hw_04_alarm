@@ -9,7 +9,9 @@ import android.media.MediaPlayer;
 public class SimpleAlarm {
     MediaPlayer mediaPlayer;
     Context context;
+    PendingIntent pendingIntent;
     AlarmManager alarmManager;
+    Boolean isSet;
     private static SimpleAlarm instance;
 
     public static SimpleAlarm getInstance() {
@@ -24,6 +26,7 @@ public class SimpleAlarm {
     void init(Context context, AlarmManager alarmManager) {
         this.context = context;
         this.alarmManager = alarmManager;
+        isSet = false;
     }
 
     void set(long time) {
@@ -32,8 +35,9 @@ public class SimpleAlarm {
         }
         mediaPlayer.setLooping(true);
         Intent myIntent = new Intent(context, AlarmActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, myIntent, 0);
+        pendingIntent = PendingIntent.getActivity(context, 0, myIntent, 0);
         alarmManager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+        isSet = true;
     }
 
     void run() {
@@ -43,10 +47,17 @@ public class SimpleAlarm {
     }
 
     void off() {
+        if (!isSet) {
+            return;
+        }
         if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.release();
             mediaPlayer = null;
         }
+        if (alarmManager != null) {
+            alarmManager.cancel(pendingIntent);
+        }
+        isSet = false;
     }
 }
