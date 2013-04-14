@@ -15,7 +15,7 @@ public class SetAlarmActivity extends Activity {
      * Called when the activity is first created.
      */
     TimePicker timePicker;
-    ToggleButton toogleButton;
+    ToggleButton toggleButton;
     SimpleAlarm alarm;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,17 +24,11 @@ public class SetAlarmActivity extends Activity {
 
         timePicker = (TimePicker)findViewById(R.id.timePicker);
         timePicker.setIs24HourView(true);
-        toogleButton = (ToggleButton)findViewById(R.id.toggleButton);
+        toggleButton = (ToggleButton)findViewById(R.id.toggleButton);
 
         AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
         alarm = SimpleAlarm.getInstance();
         alarm.init(SetAlarmActivity.this, alarmManager);
-
-        //Calendar calendar = Calendar.getInstance();
-        //calendar.setTimeInMillis(System.currentTimeMillis());
-        //calendar.add(Calendar.SECOND, 5);
-
-        //alarm.set(calendar.getTimeInMillis());
     }
 
     public void quitBtnOnClick(View v) {
@@ -42,13 +36,10 @@ public class SetAlarmActivity extends Activity {
     }
 
     public void toggleBtnHandler(View v) {
-        Log.e("BOOOOOOOOOM", "bom");
-        if (toogleButton.isChecked()) {
-            Log.e("BOOOM", "ok");
+        if (toggleButton.isChecked()) {
             long time = getNextAlarmTime();
             alarm.set(time);
         } else {
-            Log.e("BOOOM", "off");
             alarm.off();
         }
     }
@@ -73,7 +64,5 @@ public class SetAlarmActivity extends Activity {
 
         return calNext.getTimeInMillis();
     }
-
-
 }
 
