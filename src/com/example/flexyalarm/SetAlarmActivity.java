@@ -58,7 +58,6 @@ public class SetAlarmActivity extends Activity {
             calNext.add(Calendar.DATE, 1);
             Log.e("hour", "added");
         }
-
         return calNext.getTimeInMillis();
     }
 }
