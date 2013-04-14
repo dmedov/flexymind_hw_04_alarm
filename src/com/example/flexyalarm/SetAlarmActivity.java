@@ -53,9 +53,6 @@ public class SetAlarmActivity extends Activity {
         calNext.set(Calendar.HOUR, pickerHour);
         calNext.set(Calendar.MINUTE, pickerMin);
 
-        Log.e("h:", String.valueOf(pickerHour));
-        Log.e("m:", String.valueOf(pickerMin));
-
         // check if alarm time must be set to next day
         if (calNext.getTimeInMillis() < calNow.getTimeInMillis()) {
             calNext.add(Calendar.DATE, 1);
