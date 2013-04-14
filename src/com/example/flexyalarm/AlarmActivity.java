@@ -16,5 +16,10 @@ public class AlarmActivity extends Activity {
 
     public void stopAlarm(View v) {
         alarm.off();
+        finish();
+    }
+
+    public void snoozeAlarm(View v) {
+        alarm.snooze();
     }
 }

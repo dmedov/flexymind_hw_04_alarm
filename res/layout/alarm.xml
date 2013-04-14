@@ -10,10 +10,11 @@
             android:layout_height="wrap_content"
             android:text="@string/snooze_btn"
             android:id="@+id/button" android:layout_gravity="center"
-            android:onClick="stopAlarm"/>
+            android:onClick="snoozeAlarm"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/quit_btn"
+            android:text="@string/stop_btn"
+            android:onClick="stopAlarm"
             android:id="@+id/button1" android:layout_gravity="center"/>
 </LinearLayout>
