@@ -62,7 +62,6 @@ public class SetAlarmActivity extends Activity {
         // check if alarm time must be set to next day
         if (calNext.getTimeInMillis() < calNow.getTimeInMillis()) {
             calNext.add(Calendar.DATE, 1);
-            Log.e("hour", "added");
         }
         return calNext.getTimeInMillis();
     }
