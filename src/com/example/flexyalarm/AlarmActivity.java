@@ -21,5 +21,6 @@ public class AlarmActivity extends Activity {
 
     public void snoozeAlarm(View v) {
         alarm.snooze();
+        finish();
     }
 }

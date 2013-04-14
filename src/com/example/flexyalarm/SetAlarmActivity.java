@@ -31,6 +31,12 @@ public class SetAlarmActivity extends Activity {
         alarm.init(SetAlarmActivity.this, alarmManager);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        toggleButton.setChecked(alarm.isSet());
+    }
+
     public void quitBtnOnClick(View v) {
         finish();
     }

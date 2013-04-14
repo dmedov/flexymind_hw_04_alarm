@@ -71,4 +71,8 @@ public class SimpleAlarm {
         }
         isSet = false;
     }
+
+    boolean isSet() {
+        return isSet;
+    }
 }
